@@ -1,8 +1,0 @@
-services:
-  - type: web
-    name: issue-tracker
-    env: docker
-    dockerfilePath: ./Dockerfile
-    envVars:
-      - key: SPRING_PROFILES_ACTIVE
-        value: production

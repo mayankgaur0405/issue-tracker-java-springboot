@@ -25,6 +25,11 @@ COPY src src
 # Build the application with verbose output
 RUN mvn clean package -DskipTests -X
 
+# Verify the JAR file was created and show contents
+RUN ls -la target/ && \
+    echo "Checking for JAR files:" && \
+    find target/ -name "*.jar" -type f
+
 # Expose port
 EXPOSE 8080
 
@@ -33,4 +38,4 @@ ENV SPRING_PROFILES_ACTIVE=production
 ENV PORT=8080
 
 # Run the application
-CMD ["java", "-jar", "target/issue-tracker-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "target/issue-tracker-1.0.0.jar"]

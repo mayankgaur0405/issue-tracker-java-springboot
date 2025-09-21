@@ -3,7 +3,7 @@ services:
     name: issue-tracker
     env: java
     runtime: java
-    buildCommand: mvn clean package -DskipTests
+    buildCommand: ./mvnw clean package -DskipTests
     startCommand: java -jar target/issue-tracker-1.0.0.jar
     healthCheckPath: /health
     plan: free

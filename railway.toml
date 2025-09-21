@@ -1,9 +1,8 @@
 [build]
 builder = "dockerfile"
-dockerfilePath = "Dockerfile"
 
 [deploy]
-startCommand = "java -jar target/issue-tracker-0.0.1-SNAPSHOT.jar"
+startCommand = "java -jar target/issue-tracker-1.0.0.jar"
 healthcheckPath = "/health"
 healthcheckTimeout = 300
 restartPolicyType = "on_failure"

@@ -12,18 +12,18 @@ WORKDIR /app
 # Copy pom.xml first for better caching
 COPY pom.xml .
 
-# Copy Maven wrapper
-COPY mvnw .
-COPY .mvn .mvn
+# Copy Maven wrapper if it exists, otherwise use system Maven
+COPY mvnw* ./
+COPY .mvn .mvn 2>/dev/null || true
 
-# Make mvnw executable
-RUN chmod +x mvnw
+# Make mvnw executable if it exists
+RUN if [ -f mvnw ]; then chmod +x mvnw; fi
 
 # Copy source code
 COPY src src
 
 # Build the application with verbose output
-RUN mvn clean package -DskipTests -X
+RUN if [ -f mvnw ]; then ./mvnw clean package -DskipTests -X; else mvn clean package -DskipTests -X; fi
 
 # Verify the JAR file was created and show contents
 RUN ls -la target/ && \
